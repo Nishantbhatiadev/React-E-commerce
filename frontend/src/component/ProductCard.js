@@ -45,7 +45,5 @@ export default function ProductCard() {
       </MDBRow>
     </MDBContainer>
 
-
-
   );
 }

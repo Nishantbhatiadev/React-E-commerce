@@ -38,8 +38,8 @@ code {
 .footer {
   width: 100%;
   padding: 6rem 0;
-  background-color: rgba(19,19,19,0.8);
-  color: aliceblue;
+  background-color: rgba(232, 228, 228, 0.8);
+  color: #212121;
 }
 
 .footer-container {
