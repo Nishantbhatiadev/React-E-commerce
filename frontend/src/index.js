@@ -7,11 +7,13 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { store } from './app/store'
 import { Provider } from 'react-redux'
+import { Toaster } from 'sonner';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+        <Toaster />
       <App />
     </Provider>
   </React.StrictMode>

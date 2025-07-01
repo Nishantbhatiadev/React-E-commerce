@@ -33,6 +33,7 @@ export default function ProductCard() {
             <MDBCard id="card">
               <MDBCardImage src={item.image} position='top' alt='...' />
               <MDBCardBody>
+                <MDBCardTitle>{item.price}</MDBCardTitle>
                 <MDBCardTitle>{item.title}</MDBCardTitle>
                 <MDBCardText>
                   Some quick example text to build on the card title and make up the bulk of the card's content.

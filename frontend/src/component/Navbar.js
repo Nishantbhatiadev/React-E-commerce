@@ -2,8 +2,11 @@ import React from 'react'
 import logo from "../assets/logo.avif"
 import { MDBBtn } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+
+    const { totalQuantity } = useSelector((state) => state.allcart);
     return (
         <>
             <nav id='main-nav-container'>
@@ -34,8 +37,8 @@ const Navbar = () => {
                             <MDBBtn className='mx-2' color='dark'>
                                 Login
                             </MDBBtn>
-                            <MDBBtn className='mx-2'color='dark'>
-                                <Link to="/Cart" id='btn-text' >Cart</Link>
+                            <MDBBtn className='mx-2' color='dark'>
+                                <Link to="/Cart" id='btn-text' ><span>Cart</span> <span>({totalQuantity})</span> </Link>
                             </MDBBtn>
                         </div>
                     </div>
