@@ -7,8 +7,12 @@ import Blogs from './router/Blogs';
 import Product from './router/Product';
 import Contact from './router/Contact';
 import Footer from './component/Footer';
+import useCartStorage from './useCartStorage.js';
 
 const App = () => {
+
+  useCartStorage();
+
   return (
     <>
       <Router>
