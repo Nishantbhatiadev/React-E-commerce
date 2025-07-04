@@ -1,10 +1,41 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addQuantity, removeFromCart, minusQuantity } from "../feature/CartSlice";
+import { addQuantity, removeFromCart, minusQuantity, placerOrder } from "../feature/CartSlice";
+import { useNavigate } from "react-router-dom";
 
 function CartPage() {
 
   const { cart, totalQuantity, totalPrice } = useSelector((state) => state.allcart)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handlePlaceOrder = () => {
+    dispatch(placerOrder({ cart, totalPrice, totalQuantity }));
+
+    if (cart.le === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+    dispatch(
+      placerOrder({
+        items: cart,
+        totalQuantity,
+        totalPrice,
+        timestamp: Date.now(),
+      })
+    );
+
+    navigate("/orders")
+  }
+
+  if (cart.length === 0) {
+    return (
+      <div className="container text-center my-5 py-5">
+        <h2>Your cart is empty</h2>
+        <p>Please add some item on cart</p>
+        <a href="/product" className="btn btn-primary">Go to Product</a>
+      </div>
+    )
+  }
 
   return (
     <section className="h-100 gradient-custom">
@@ -65,8 +96,11 @@ function CartPage() {
                     <span>₹{totalPrice}</span>
                   </li>
                 </ul>
-                <button type="button" className="btn btn-primary btn-lg btn-block mt-3">
-                  Go to checkout
+                <button
+                  type="button"
+                  className="btn btn-primary btn-lg btn-block mt-3"
+                  onClick={handlePlaceOrder}>
+                  Place Order!
                 </button>
               </div>
             </div>
@@ -74,8 +108,9 @@ function CartPage() {
         </div>
       </div>
     </section>
-
   );
+
+
 }
 
 export default CartPage;

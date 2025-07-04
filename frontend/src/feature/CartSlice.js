@@ -6,8 +6,8 @@ const initialState = {
     cart: [],
     items: productData,
     totalQuantity: 0,
-    totalPrice: 0
-
+    totalPrice: 0,
+    orders: []
 }
 
 export const cartSlice = createSlice({
@@ -76,8 +76,27 @@ export const cartSlice = createSlice({
         // Action to store the cart in local storage
         setCart: (state, action) => {
             return action.payload
-        }
+        },
 
+        // Action to place order
+        placerOrder: (state, action) => {
+            state.orders.push({ id: Date.now(), ...action.payload })
+
+            if (state.cart.length > 0) {
+                state.cart = [];
+                state.totalQuantity = 0;
+                state.totalPrice = 0;
+                toast.success('Order placed successfully!');
+            }
+            else {
+                toast.error('Cart is empty!');
+            }
+        },
+
+        // Action to Store orders in local storage
+        setOrders: (state, action) => {
+            state.orders = action.payload;
+        }
     }
 });
 export const {
@@ -85,7 +104,8 @@ export const {
     removeFromCart,
     addQuantity,
     minusQuantity,
-    setCart
-} = cartSlice.actions
+    setCart,
+    placerOrder,
+    setOrders } = cartSlice.actions
 
 export default cartSlice.reducer

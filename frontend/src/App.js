@@ -8,10 +8,13 @@ import Product from './router/Product';
 import Contact from './router/Contact';
 import Footer from './component/Footer';
 import useCartStorage from './useCartStorage.js';
+import useOrderStorage from './useOrderStorage.js';
+import Orders from './component/Orders.js';
 
 const App = () => {
 
   useCartStorage();
+  useOrderStorage();
 
   return (
     <>
@@ -23,6 +26,7 @@ const App = () => {
           <Route path="/blog" element={<Blogs />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/Cart" element={<CartPage />}></Route>
+          <Route path="/orders" element={<Orders />}></Route>
         </Routes>
         <Footer />
       </Router>
