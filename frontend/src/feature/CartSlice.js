@@ -79,23 +79,40 @@ export const cartSlice = createSlice({
         },
 
         // Action to place order
-        placerOrder: (state, action) => {
-            state.orders.push({ id: Date.now(), ...action.payload })
-
-            if (state.cart.length > 0) {
-                state.cart = [];
-                state.totalQuantity = 0;
-                state.totalPrice = 0;
-                toast.success('Order placed successfully!');
-            }
-            else {
+        placeOrder: (state, action) => {
+            if (state.cart.length === 0) {
                 toast.error('Cart is empty!');
+                return;
             }
+
+            const order = {
+                id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+                items: [...state.cart], // Copy cart items
+                totalQuantity: state.totalQuantity,
+                totalPrice: state.totalPrice,
+                timestamp: new Date().toISOString(),
+                status: 'pending',
+                ...action.payload 
+            };
+
+            state.orders.push(order);
+
+            // Clear cart after successful order
+            state.cart = [];
+            state.totalQuantity = 0;
+            state.totalPrice = 0;
+
+            toast.success('Order placed successfully!');
         },
 
         // Action to Store orders in local storage
         setOrders: (state, action) => {
             state.orders = action.payload;
+            // if (state.orders.length === 0) {
+            //     toast.error('No orders found!');
+            // } else {
+            //     toast.success('Orders loaded successfully!');
+            // }   
         }
     }
 });
@@ -105,7 +122,7 @@ export const {
     addQuantity,
     minusQuantity,
     setCart,
-    placerOrder,
+    placeOrder,
     setOrders } = cartSlice.actions
 
 export default cartSlice.reducer

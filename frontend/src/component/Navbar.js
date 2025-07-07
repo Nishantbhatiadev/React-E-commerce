@@ -26,8 +26,12 @@ const Navbar = () => {
                                 <Link to='/blog' className='links'>Blogs</Link>
                             </li>
                             <li className='list'>
+                                <Link to='/orders' className='links'>Orders</Link>
+                            </li>
+                            <li className='list'>
                                 <Link to='/contact' className='links'>Contact us</Link>
                             </li>
+                            
                         </ul>
 
                         <div id='nav-right'>

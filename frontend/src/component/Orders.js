@@ -1,11 +1,13 @@
 // Orders.jsx
 import { useSelector } from "react-redux";
 
+
 const Orders = () => {
   const orders = useSelector((state) => state.allcart.orders);
+  
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5 py-5">
       <h2>My Orders</h2>
       {orders.length === 0 ? (
         <p>No orders yet.</p>

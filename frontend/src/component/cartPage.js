@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addQuantity, removeFromCart, minusQuantity, placerOrder } from "../feature/CartSlice";
+import { addQuantity, removeFromCart, minusQuantity, placeOrder } from "../feature/CartSlice";
 import { useNavigate } from "react-router-dom";
 
 function CartPage() {
@@ -9,14 +9,14 @@ function CartPage() {
   const navigate = useNavigate();
 
   const handlePlaceOrder = () => {
-    dispatch(placerOrder({ cart, totalPrice, totalQuantity }));
+    dispatch(placeOrder({ cart, totalPrice, totalQuantity }));
 
-    if (cart.le === 0) {
+    if (cart.length === 0) {
       alert("Cart is empty!");
       return;
     }
     dispatch(
-      placerOrder({
+      placeOrder({
         items: cart,
         totalQuantity,
         totalPrice,
