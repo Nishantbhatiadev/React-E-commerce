@@ -43,7 +43,7 @@ export default
       price: 9000,
       description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       quantity: 1,
-      image: "https://i0.wp.com/mikeyarce.com/wp-content/uploads/2021/09/woocommerce-placeholder.png?ssl=1",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wZG7y-rAX5r-EYSJ1BWauEV5xsvWMOA52g&s",
 
     },
     {
@@ -84,3 +84,4 @@ export default
     },
 
   ];
+  
